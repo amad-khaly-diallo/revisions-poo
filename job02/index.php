@@ -15,4 +15,4 @@ $product1 = new Product(
 );
 
 // Afficher la catégorie du produit
-echo "Product Category ID: " . $product1->getProductCategoryId();
+echo "Product Category ID: " . $product1->getCategoryId();

@@ -27,83 +27,83 @@ class Product
         $this->category_id = $category_id;
     }
     // product id
-    public function getProductId()
+    public function getId()
     {
         return $this->id;
     }
-    public function setProductId($newId)
+    public function setId($newId)
     {
         $this->id = $newId;
     }
     // product name
-    public function getProductName()
+    public function getName()
     {
         return $this->name;
     }
-    public function setProductName($name)
+    public function setName($name)
     {
         $this->name = $name;
     }
     // product photos
-    public function getProductPhotos()
+    public function getPhotos()
     {
         return $this->photos;
     }
-    public function setProductPhotos($photos)
+    public function setPhotos($photos)
     {
         $this->photos = $photos;
     }
     // product price
-    public function getProductPrice()
+    public function getPrice()
     {
         return $this->price;
     }
-    public function setProductPrice($price)
+    public function setPrice($price)
     {
         $this->price = $price;
     }
     // product description
-    public function getProductDescription()
+    public function getDescription()
     {
         return $this->description;
     }
-    public function setProductDescription($description)
+    public function setDescription($description)
     {
         $this->description = $description;
     }
     // product quantity
-    public function getProductQuantity()
+    public function getQuantity()
     {
         return $this->quantity;
     }
-    public function setProductQuantity($quantity)
+    public function setQuantity($quantity)
     {
         $this->quantity = $quantity;
     }
     // product created at
-    public function getProductCreatedAt()
+    public function getCreatedAt()
     {
         return $this->createdAt;
     }
-    public function setProductCreatedAt($createdAt)
+    public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
     }
     // product updated at
-    public function getProductUpdatedAt()
+    public function getUpdatedAt()
     {
         return $this->updatedAt;
     }
-    public function setProductUpdatedAt($updatedAt)
+    public function setUpdatedAt($updatedAt)
     {
         $this->updatedAt = $updatedAt;
     }
     // product category id
-    public function getProductCategoryId()
+    public function getCategoryId()
     {
         return $this->category_id;
     }
-    public function setProductCategoryId($category_id)
+    public function setCategoryId($category_id)
     {
         $this->category_id = $category_id;
     }

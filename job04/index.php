@@ -27,12 +27,12 @@ $product = new Product(
 );
 // display product details
 echo "<pre>";
-var_dump($product->getProductName());
-var_dump($product->getProductPhotos());
-var_dump($product->getProductPrice());
-var_dump($product->getProductDescription());
-var_dump($product->getProductQuantity());
-var_dump($product->getProductCreatedAt());
-var_dump($product->getProductUpdatedAt());
-var_dump($product->getProductCategoryId());
+var_dump($product->getName());
+var_dump($product->getPhotos());
+var_dump($product->getPrice());
+var_dump($product->getDescription());
+var_dump($product->getQuantity());
+var_dump($product->getCreatedAt());
+var_dump($product->getUpdatedAt());
+var_dump($product->getCategoryId());
 echo "</pre>";

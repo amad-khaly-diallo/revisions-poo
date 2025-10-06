@@ -28,24 +28,24 @@ class Product
     }
 
     // ----- GETTERS / SETTERS -----
-    public function getProductId() { return $this->id; }
-    public function setProductId($id) { $this->id = $id; }
-    public function getProductName() { return $this->name; }
-    public function setProductName($name) { $this->name = $name; }
-    public function getProductPhotos() { return $this->photos; }
-    public function setProductPhotos($photos) { $this->photos = $photos; }
-    public function getProductPrice() { return $this->price; }
-    public function setProductPrice($price) { $this->price = $price; }
-    public function getProductDescription() { return $this->description; }
-    public function setProductDescription($description) { $this->description = $description; }
-    public function getProductQuantity() { return $this->quantity; }
-    public function setProductQuantity($quantity) { $this->quantity = $quantity; }
-    public function getProductCreatedAt() { return $this->createdAt; }
-    public function setProductCreatedAt($createdAt) { $this->createdAt = $createdAt; }
-    public function getProductUpdatedAt() { return $this->updatedAt; }
-    public function setProductUpdatedAt($updatedAt) { $this->updatedAt = $updatedAt; }
-    public function getProductCategoryId() { return $this->category_id; }
-    public function setProductCategoryId($category_id) { $this->category_id = $category_id; }
+    public function getId() { return $this->id; }
+    public function setId($id) { $this->id = $id; }
+    public function getName() { return $this->name; }
+    public function setName($name) { $this->name = $name; }
+    public function getPhotos() { return $this->photos; }
+    public function setPhotos($photos) { $this->photos = $photos; }
+    public function getPrice() { return $this->price; }
+    public function setPrice($price) { $this->price = $price; }
+    public function getDescription() { return $this->description; }
+    public function setDescription($description) { $this->description = $description; }
+    public function getQuantity() { return $this->quantity; }
+    public function setQuantity($quantity) { $this->quantity = $quantity; }
+    public function getCreatedAt() { return $this->createdAt; }
+    public function setCreatedAt($createdAt) { $this->createdAt = $createdAt; }
+    public function getUpdatedAt() { return $this->updatedAt; }
+    public function setUpdatedAt($updatedAt) { $this->updatedAt = $updatedAt; }
+    public function getCategoryId() { return $this->category_id; }
+    public function setCategoryId($category_id) { $this->category_id = $category_id; }
 
     // ----- CRUD -----
     public function create()
@@ -208,7 +208,7 @@ class Category
         $this->updatedAt = ($updatedAt instanceof DateTime) ? $updatedAt : new DateTime();
     }
 
-    public function getProducts()
+    public function gets()
     {
         $sql = "SELECT * FROM product WHERE category_id = :category_id";
         $db = new ConnectDB();

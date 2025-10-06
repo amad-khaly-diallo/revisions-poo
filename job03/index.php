@@ -6,5 +6,5 @@ $product1 = new Product();
 
 // Afficher la catégorie du produit
 echo "<pre>";
-var_dump($product1->getProductName());
+var_dump($product1->getName());
 echo "</pre>";
