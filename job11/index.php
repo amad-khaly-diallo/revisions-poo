@@ -1,42 +1,69 @@
 <?php
-require_once 'Product.php';
-require_once 'config.php';
+require_once 'Classe.php'; // ton fichier principal contenant Product, Clothing, Electronic, Category, ConnectDB
 
-// Créer un produit
-$product = new Product(
-    null,
-    "Test product",
-    ["https://picsum.photos/200/300", "https://picsum.photos/200/301"],
-    99.99,
-    "This is a test product",
-    10,
-    null,
-    null,
-    1
+// --- Exemple 1 : Créer un vêtement ---
+$tshirt = new Clothing(
+    null,                       
+    "T-shirt Nike",             
+    ["https://picsum.photos/200/300", "https://picsum.photos/200/300"], 
+    29.99,                      
+    "T-shirt de sport confortable", 
+    100,                        
+    null,                       
+    null,                       
+    1,                          
+    "L",                        
+    "Bleu",                     
+    "Sport",                     
+    5                           
 );
 
 // Enregistrer en BDD
-$newProduct = $product->create();
+$newTshirt = $tshirt->create();
 
 // Affichage initial
-echo "<h2>Produit créé</h2>";
-echo "<strong>Nom :</strong> " . htmlspecialchars($newProduct->getName()) . "<br>";
-echo "<strong>Quantité :</strong> " . $newProduct->getQuantity() . "<br>";
-
-// ---- Update du produit ----
-$newProduct->setName("Produit mis à jour");
-$newProduct->setPrice(149.99);
-$newProduct->setQuantity(20);
-$newProduct->update();
-
-// Affichage après update
-echo "<h2>Produit mis à jour</h2>";
-echo "<strong>Nom :</strong> " . htmlspecialchars($newProduct->getName()) . "<br>";
-echo "<strong>Prix :</strong> $" . number_format($newProduct->getPrice(), 2) . "<br>";
-echo "<strong>Quantité :</strong> " . $newProduct->getQuantity() . "<br>";
+echo "<h2>Vêtement créé</h2>";
+echo "<strong>Nom :</strong> " . htmlspecialchars($newTshirt->getName()) . "<br>";
+echo "<strong>Taille :</strong> " . htmlspecialchars($newTshirt->getSize()) . "<br>";
+echo "<strong>Couleur :</strong> " . htmlspecialchars($newTshirt->getColor()) . "<br>";
+echo "<strong>Type :</strong> " . htmlspecialchars($newTshirt->getType()) . "<br>";
+echo "<strong>Prix :</strong> $" . number_format($newTshirt->getPrice(), 2) . "<br>";
+echo "<strong>Quantité :</strong> " . $newTshirt->getQuantity() . "<br>";
 
 // Afficher les photos
 echo "<h3>Photos :</h3>";
-foreach ($newProduct->getPhotos() as $photo) {
+foreach ($newTshirt->getPhotos() as $photo) {
+    echo "<img src='" . htmlspecialchars($photo) . "' alt='Photo produit' style='width:150px;margin:5px;'>";
+}
+
+// --- Exemple 2 : Créer un produit électronique ---
+$phone = new Electronic(
+    null,                       // id
+    "iPhone 15",                // name
+    ["https://picsum.photos/200/300", "https://picsum.photos/200/300"], // photos
+    1200.00,                    // price
+    "Dernier modèle Apple",     // description
+    20,                         // quantity
+    null,                       // createdAt
+    null,                       // updatedAt
+    2,                          // category_id
+    "Apple",                    // brand
+    24                          // warranty_fee (mois)
+);
+
+// Enregistrer en BDD
+$newPhone = $phone->create();
+
+// Affichage
+echo "<h2>Produit électronique créé</h2>";
+echo "<strong>Nom :</strong> " . htmlspecialchars($newPhone->getName()) . "<br>";
+echo "<strong>Marque :</strong> " . htmlspecialchars($newPhone->getBrand()) . "<br>";
+echo "<strong>Garantie :</strong> " . $newPhone->getWarrantyFee() . " mois<br>";
+echo "<strong>Prix :</strong> $" . number_format($newPhone->getPrice(), 2) . "<br>";
+echo "<strong>Quantité :</strong> " . $newPhone->getQuantity() . "<br>";
+
+// Afficher les photos
+echo "<h3>Photos :</h3>";
+foreach ($newPhone->getPhotos() as $photo) {
     echo "<img src='" . htmlspecialchars($photo) . "' alt='Photo produit' style='width:150px;margin:5px;'>";
 }

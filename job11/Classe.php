@@ -75,17 +75,7 @@ class Product
         $this->createdAt = $now;
         $this->updatedAt = $now;
 
-        return new Product(
-            $pdo->lastInsertId(),
-            $this->name,
-            $this->photos,
-            $this->price,
-            $this->description,
-            $this->quantity,
-            $this->createdAt,
-            $this->updatedAt,
-            $this->category_id
-        );
+        return $this;
     }
 
     public function update()
@@ -246,4 +236,82 @@ class Category
     public function setDescription($desc) { $this->description = $desc; }
     public function setCreatedAt($dt) { $this->createdAt = $dt; }
     public function setUpdatedAt($dt) { $this->updatedAt = $dt; }
+}
+
+
+class Clothing extends Product {
+    private $size;
+    private $color;
+    private $type;
+    private $material_fee;
+
+    public function __construct(
+        $id = null,
+        $name = 'unknown',
+        $photos = ["https://picsum.photos/200/300"],
+        $price = 0.0,
+        $description = 'No description',
+        $quantity = 0,
+        $createdAt = null,
+        $updatedAt = null,
+        $category_id = null,
+        $size = 'M',
+        $color = 'No color',
+        $type = 'No type',
+        $material_fee = 0
+    ) {
+        // Appeller le constructeur parent pour les propriétés de Product
+        parent::__construct($id, $name, $photos, $price, $description, $quantity, $createdAt, $updatedAt, $category_id);
+
+        // Propriétés spécifiques à Clothing
+        $this->size = $size;
+        $this->color = $color;
+        $this->type = $type;
+        $this->material_fee = $material_fee;
+    }
+
+    // ----- GETTERS -----
+    public function getSize() { return $this->size; }
+    public function getColor() { return $this->color; }
+    public function getType() { return $this->type; }
+    public function getMaterialFee() { return $this->material_fee; }
+
+    // ----- SETTERS -----
+    public function setSize($size) { $this->size = $size; }
+    public function setColor($color) { $this->color = $color; }
+    public function setType($type) { $this->type = $type; }
+    public function setMaterialFee($fee) { $this->material_fee = $fee; }
+}
+
+
+class Electronic extends Product
+{
+    private $brand;
+    private $warranty_fee;
+
+    public function __construct(
+        $id = null,
+        $name = 'unknown',
+        $photos = ["https://picsum.photos/200/300"],
+        $price = 0.0,
+        $description = 'No description',
+        $quantity = 0,
+        $createdAt = null,
+        $updatedAt = null,
+        $category_id = null,
+        $brand = 'No brand',
+        $warranty_fee = 0
+    ) {
+        parent::__construct($id, $name, $photos, $price, $description, $quantity, $createdAt, $updatedAt, $category_id);
+
+        $this->brand = $brand;
+        $this->warranty_fee = $warranty_fee;
+    }
+
+    // Getters / Setters
+    public function getBrand() { return $this->brand; }
+    public function setBrand($b) { $this->brand = $b; }
+
+    public function getWarrantyFee() { return $this->warranty_fee; }
+    public function setWarrantyFee($w) { $this->warranty_fee = $w; }
 }
