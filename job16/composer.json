@@ -1,0 +1,14 @@
+{
+    "name": "khalyamad/job15",
+    "autoload": {
+        "psr-4": {
+            "Khalyamad\\Job15\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "amad"
+        }
+    ],
+    "require": {}
+}
