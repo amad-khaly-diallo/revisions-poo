@@ -19,11 +19,6 @@ class Clothing extends AbstractProduct implements StockableInterface, EntityInte
         return $this->id;
     }
 
-    public function setId(int $id): void
-    {
-        $this->id = $id;
-    }
-
 
     public function __construct(
         string $name,

@@ -34,11 +34,6 @@ class Electronic extends AbstractProduct implements StockableInterface, EntityIn
         return $this->id;
     }
 
-    public function setId(int $id): void
-    {
-        $this->id = $id;
-    }
-
     // --- Implémentation de l'interface StockableInterface ---
     public function addStocks(int $stock): self
     {

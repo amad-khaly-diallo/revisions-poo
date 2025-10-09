@@ -1,15 +1,18 @@
 <?php
 
 namespace Khalyamad\Job15\Abstract;
+
+use Khalyamad\Job15\config\ConnectDB;
+use Khalyamad\Job15\EntityCollection;
+use Khalyamad\Job15\Interface\EntityInterface;
 use DateTime;
 use Exception;
 use PDO;
-use Khalyamad\Job15\config\ConnectDB;
 
 require_once(__DIR__ . '/../../config/config.php');
 
 /* -------------------- Produit abstrait -------------------- */
-abstract class AbstractProduct
+abstract class AbstractProduct implements EntityInterface
 {
     protected ?int $id;
     protected string $name;
@@ -48,6 +51,10 @@ abstract class AbstractProduct
     public function getId(): ?int
     {
         return $this->id;
+    }
+    public function setId(?int $id): void
+    {
+        $this->id = $id;
     }
     public function getName(): string
     {
@@ -192,110 +199,18 @@ abstract class AbstractProduct
         ]);
     }
 
-    public function save($id){
+    public function save($id)
+    {
         $sql = 'SELECT id FROM product WHERE id = :id';
         $db = new ConnectDB();
         $pdo = $db->connect();
         $stmt = $pdo->prepare($sql);
         $stmt->execute([':id' => $id]);
         $id = $stmt->fetch(PDO::FETCH_ASSOC);
-        if($id){
+        if ($id) {
             return $this->update();
         } else {
             return $this->create();
         }
-
-    }
-}
-
-/* -------------------- Category -------------------- */
-class Category
-{
-    private ?int $id;
-    private string $name;
-    private string $description;
-    private DateTime $createdAt;
-    private DateTime $updatedAt;
-
-    public function __construct(
-        ?int $id = null,
-        string $name = 'unknown',
-        string $description = 'No description',
-        ?DateTime $createdAt = null,
-        ?DateTime $updatedAt = null
-    ) {
-        $this->id = $id;
-        $this->name = $name;
-        $this->description = $description;
-        $this->createdAt = $createdAt ?? new DateTime();
-        $this->updatedAt = $updatedAt ?? new DateTime();
-    }
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-    public function getName(): string
-    {
-        return $this->name;
-    }
-    public function getDescription(): string
-    {
-        return $this->description;
-    }
-
-    public function setName(string $name): void
-    {
-        $this->name = $name;
-    }
-    public function setDescription(string $desc): void
-    {
-        $this->description = $desc;
-    }
-
-    /** @return Product[] */
-    public function getProducts(): array
-    {
-        if ($this->id === null) return [];
-
-        $db = new ConnectDB();
-        $pdo = $db->connect();
-        $stmt = $pdo->prepare("SELECT * FROM product WHERE category_id=:id");
-        $stmt->execute([':id' => $this->id]);
-        $all = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        $products = [];
-        foreach ($all as $data) {
-            $products[] = new class(
-                (int)$data['id'],
-                $data['name'],
-                json_decode($data['photos'], true) ?: [],
-                (float)$data['price'],
-                $data['description'],
-                (int)$data['quantity'],
-                new DateTime($data['created_at']),
-                new DateTime($data['updated_at']),
-                $data['category_id']
-            ) extends AbstractProduct {
-                public function create(): static
-                {
-                    return $this;
-                }
-                public function update(): bool
-                {
-                    return true;
-                }
-                public function findOneById(int $id): ?static
-                {
-                    return $this;
-                }
-                public function findAll(): array
-                {
-                    return [$this];
-                }
-            };
-        }
-
-        return $products;
     }
 }
